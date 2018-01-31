@@ -1,0 +1,44 @@
+#wrapper {
+	height: 100%;
+	width: 1400px;
+}
+
+.text_field {
+	padding: 10px;
+	height: 100px;
+	width: 500px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.content {
+	height: 100%;
+	width: 590px;
+	display:inline-block;
+	margin-left: 20px;
+	vertical-align: top;
+}
+
+#create_quote {
+	margin-top: -300px;
+	margin-left: 450px;
+	height: 300px;
+	width: 400px;
+}
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}

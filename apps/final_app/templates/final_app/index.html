@@ -1,0 +1,45 @@
+<html>
+<title></title>
+<head>
+    {% load static %}
+<link rel="stylesheet" href="{% static 'final_app/style.css' %}" media="screen" title="no title"  charset="utf-8">
+<link rel="stylesheet" href="{% static 'final_app/skeleton.css' %}" media="screen" title="no title"  charset="utf-8">
+<link rel="stylesheet" href="{% static 'final_app/normalize.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                {{ message }}
+            </li>
+            {% endfor %}
+        </ul>
+      {% endif %}
+
+    <div class="text_field">
+    <h1> Please Register Below: </h1>
+    <form action="/add" method="post">
+        {% csrf_token %}
+        Full Name: <input type="text" name="name"><br>
+        Alias: <input type="text" name="alias"> <br>
+        Email: <input type="text" name="email"> <br>
+        Date of birth: <input type="date" name="birthday"> <br>
+        Password: <input type="password" name="password"> <br>
+        Confirm Password: <input type="password" name="pw_confirm"><br>
+        <input type="submit" name="submit" value="Submit">
+    </form>
+    </div>
+    <div class="text_field">
+    <h1> Please Login Below: </h1>
+    <form action="/login" method="post">
+        {% csrf_token %}
+        Email: <input type="text" name="email"><br>
+        Password: <input type="password" name="password"> 
+        <br>
+        <input type="submit" name="submit" value="Submit">
+    </form>
+    </div>
+</body>
+</html>

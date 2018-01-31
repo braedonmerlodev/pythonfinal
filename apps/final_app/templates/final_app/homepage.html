@@ -1,0 +1,58 @@
+<html>
+<title></title>
+<head>
+    {% load static %}
+<link rel="stylesheet" href="{% static 'final_app/style.css' %}" media="screen" title="no title"  charset="utf-8">
+<link rel="stylesheet" href="{% static 'final_app/skeleton.css' %}" media="screen" title="no title"  charset="utf-8">
+<link rel="stylesheet" href="{% static 'final_app/normalize.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+    <div id="wrapper">
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                {{ message }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+    <div class="text_field">
+        <h1> Welcome {{request.session.alias}}! </h1>
+    </div>
+    <div class="text_field">
+        <a href="/logout">Logout</a>
+    </div>
+    <div class="content">
+    {% for user in users %}
+    <p>{{user.name}} poked you {{count}} times.</p>
+    {% endfor %}
+    <table>
+            <tr>
+                <th>Name</th>
+                <th>Alias</th>
+                <th>Email Address</th>
+                <th>Poke History</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                {% for user in users %}
+                <td>{{ user.name }} </td>
+                <td>{{ user.alias }} </td>
+                <td>{{ user.email }}</td>
+                <td> {{ count }} </td>
+                <td><form action="/poke/{{request.session.user_id}}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="submit" value="Poke">
+                    </form></td>
+                </tr>
+                {% endfor %}
+    </table>
+    
+    </div>
+    </div>
+</body>
+</html>
